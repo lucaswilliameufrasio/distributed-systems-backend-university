@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMesasTable extends Migration
+class CreateLogAutenticacaoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateMesasTable extends Migration
      */
     public function up()
     {
-        Schema::create('mesas', function (Blueprint $table) {
-            $table->unsignedBigInteger('id')->primary();
-            $table->boolean('status');
+        Schema::create('logAutenticacao', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('mensagem');
+            $table->integer('users_id');
             $table->timestamps();
+            $table->foreign('users_id')->references('id')->on('users');
         });
     }
 
@@ -27,6 +29,6 @@ class CreateMesasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mesas');
+        Schema::dropIfExists('logAutenticacao');
     }
 }
