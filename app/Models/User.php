@@ -9,7 +9,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable; 
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +17,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'ativo', 'nivelAcesso_id',
     ];
 
     /**
@@ -37,7 +37,7 @@ class User extends Authenticatable implements JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
@@ -52,5 +52,5 @@ class User extends Authenticatable implements JWTSubject
         if ( !empty($password) ) {
             $this->attributes['password'] = bcrypt($password);
         }
-    }   
+    }
 }
