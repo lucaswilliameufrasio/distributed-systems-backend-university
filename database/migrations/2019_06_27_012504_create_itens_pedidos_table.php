@@ -14,8 +14,9 @@ class CreateItensPedidosTable extends Migration
     public function up()
     {
         Schema::create('itensPedidos', function (Blueprint $table) {
-            $table->integer('pedidos_id')->primary();
-            $table->integer('produtos_id')->primary();
+            $table->bigIncrements('id');
+            $table->integer('pedidos_id');
+            $table->integer('produtos_id');
             $table->integer('estacaoProducao_id');
             $table->boolean('statusItemPedido');
             $table->timestamps();
