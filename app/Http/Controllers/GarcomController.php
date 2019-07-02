@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\ListaMesas;
 use App\Models\Mesa;
+use App\Models\Pedido;
 use Illuminate\Http\Request;
 
 class GarcomController extends Controller
