@@ -19,8 +19,7 @@ Route::get('mesas', 'GarcomController@mesas');
 Route::patch('mesas/{id}', 'GarcomController@atualizaStatusMesa');
 
 Route::group(['middleware' => ['jwt.verify']], function() {
-    Route::get('verifytoken', 'AuthController@verifytoken');
+    Route::get('verifytoken', 'AuthController@verificaToken');
     Route::post('/logout', 'AuthController@logout');
-    Route::get('getuserdetails', 'AuthController@getAuthenticatedUser');
     Route::get('closed', 'AuthController@closed');
 });
