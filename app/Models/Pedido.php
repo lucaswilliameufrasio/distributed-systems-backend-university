@@ -12,8 +12,4 @@ class Pedido extends Model
         'finalizado',
         'mesas_id',
     ];
-
-    public function itenspedidos(){
-        return $this->hasMany('App\ItensPedidos');
-    }
 }
