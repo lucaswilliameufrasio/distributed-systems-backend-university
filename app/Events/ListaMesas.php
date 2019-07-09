@@ -18,9 +18,9 @@ class ListaMesas implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct($teste)
+    public function __construct($mesa)
     {
-        $this->listamesas = $teste;
+        $this->listamesas = $mesa;
     }
 
     // public function broadcastWith(Mesa $listamesas)
@@ -28,6 +28,8 @@ class ListaMesas implements ShouldBroadcast
     //     $this->listamesas = $listamesas;
     //     return $listamesas;
     // }
+
+
     /**
      * Get the channels the event should broadcast on.
      *
