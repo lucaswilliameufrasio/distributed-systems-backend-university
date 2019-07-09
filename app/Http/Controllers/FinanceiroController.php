@@ -27,7 +27,7 @@ class FinanceiroController extends Controller
             'email' => $request->email,
             'password' => $request->password,
             'ativo' => 1,
-            'nivelAcesso_id' => $request->nivelacesso,
+            'nivelAcesso_id' => 3,
         ]);
 
         return response()->json([
