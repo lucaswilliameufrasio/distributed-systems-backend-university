@@ -1,4 +1,85 @@
-<p align="center">Backend do projeto de Sistemas Distribuidos</p>
+# Backend do projeto de Sistemas Distribuidos
+
+
+## Manual de utilização
+
+1 - Primeiramente, você deve clonar este repositório. Exemplo:
+
+```
+git clone git@github.com:lucaswilliameufrasio/sistemas-distribuidos-backend.git nomeProjeto
+```
+
+2 - Depois digitar o seguinte comando no terminal
+
+```
+cd nomeProjeto
+```
+
+3 - Instalar as dependências do Composer
+
+```
+composer install
+```
+
+4 - Instalar as dependências do NPM
+
+```
+npm install
+```
+
+ou
+
+```
+yarn install
+```
+
+5 - Criar uma cópia do arquivo .env
+
+```
+cp .env.example .env
+```
+
+6 - Gerar uma chave criptografica da aplicação
+
+```
+php artisan key:generate
+```
+
+chave secreta do JWT:
+
+```
+php artisan jwt:secret
+```
+
+7 - Criar uma base de dados vázia para a aplicação
+
+Crie uma base dados vázia usando sua ferramenta de gerenciamento de base de dados preferida. Exemplo:
+
+```
+PGAdmin - PostgreSQL
+```
+
+Observação: API testada somente com PostgreSQL
+
+8 - Adicionar informações da base de dados no arquivo .env
+
+Fornecer dados para as seguintes variáveis:
+
+```
+DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, and DB_PASSWORD
+```
+
+9- Migrar a base de dados e preencher com os dados iniciais
+
+```
+php artisan migrate --seed
+```
+
+10- Rodar a aplicação
+
+```
+php artisan serve --port 8001
+```
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
