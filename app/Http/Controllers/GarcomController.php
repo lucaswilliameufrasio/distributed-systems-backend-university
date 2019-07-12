@@ -26,7 +26,7 @@ class GarcomController extends Controller
     {
         //Atualiza o status da mesa para true, ativa
         Mesa::where('id', $id)->update([
-            'status' => $request->status,
+            'status' => true,
         ]);
 
         //Cria um pedido para a mesa correspondente
@@ -75,6 +75,11 @@ class GarcomController extends Controller
         ]);
         $pedido = Pedido::where('id', $id)->firstOrFail();
 
+        //Altera o status da mesa para false, significa que está aberta para novos pedidos.
+        Mesa::where('id', $pedido->mesas_id)->update([
+            'status' => false,
+        ]);
+
         // dd($pedido);
         $mensagem = "Pedido " . $pedido->id . " foi fechado com sucesso!";
 
@@ -86,6 +91,7 @@ class GarcomController extends Controller
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
+
         return response()->json([
             'produtos' => $mensagem,
         ], 200,
