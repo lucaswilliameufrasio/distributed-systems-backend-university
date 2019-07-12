@@ -31,7 +31,7 @@ class FinanceiroController extends Controller
         ]);
 
         return response()->json([
-            'data' => 'Garçom cadastrado com sucesso.',
+            'message' => 'Garçom cadastrado com sucesso.',
         ], 200,
             ['Content-type' => 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
@@ -62,7 +62,7 @@ class FinanceiroController extends Controller
         ]);
 
         return response()->json([
-            'data' => 'Agente de Produção cadastrado com sucesso.',
+            'message' => 'Agente de Produção cadastrado com sucesso.',
         ], 200,
             ['Content-type' => 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
@@ -86,7 +86,7 @@ class FinanceiroController extends Controller
         $agentes = User::where('nivelAcesso_id', 2)->get();
 
         return response()->json([
-            'data' => $agentes,
+            'agentes' => $agentes,
         ], 200,
             ['Content-type' => 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
@@ -97,25 +97,12 @@ class FinanceiroController extends Controller
         $agentes = User::where('nivelAcesso_id', 3)->get();
 
         return response()->json([
-            'data' => $agentes,
+            'garcons' => $agentes,
         ], 200,
             ['Content-type' => 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
 
-    public function listarMesas()
-    {
-        $params = Mesa::orderBy('id', 'asc')->get();
-
-        return response()->json(
-            $params, 200,
-            ['Content-type' => 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
-    }
-
     public function cadastrarMesa(Request $request){
-        // DB::table('mesas')->insert([
-        //     'id' => $request->id,
-        //     'status' => false,
-        // ]);
 
         Mesa::create([
             'id' => $request->id,
