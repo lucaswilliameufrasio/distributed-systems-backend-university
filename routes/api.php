@@ -32,13 +32,14 @@ Route::group(['middleware' => ['jwt.verify']], function () {
 //Rotas do Agente de Produção
     Route::get('estacao/{id}', 'EstacaoController@listarItensEstacao');
     Route::post('itemfinalizado/{id}', 'EstacaoController@confirmarPreparo');
+    Route::post('processofinalizado/{id}', 'EstacaoController@finalizarProcesso');
 
 //Rotas do Financeiro
     Route::post('registrargarcom', 'FinanceiroController@registrarGarcom');
     Route::post('registraragente', 'FinanceiroController@registrarAgenteProducao');
     Route::get('listaragentesproducao', 'FinanceiroController@listarAgentesProducao');
     Route::get('listargarcons', 'FinanceiroController@listarGarcons');
-    Route::get('listarmesas', 'FinanceiroController@listarMesas');
     Route::post('cadastrarmesa', 'FinanceiroController@cadastrarMesa');
     Route::post('produto', 'FinanceiroController@cadastraProduto');
+
 });
