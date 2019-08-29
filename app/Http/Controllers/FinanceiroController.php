@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Produto;
 use App\Models\Mesa;
+use App\Models\Produto;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -14,24 +14,34 @@ class FinanceiroController extends Controller
 {
     public function registrarGarcom(Request $request)
     {
+        // return response()->json($request->all());
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string',
+            'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors());
         }
+        $imageName = time() . '.' . $request->photo->getClientOriginalExtension();
+        $request->photo->move(public_path('images'), $imageName);
+
+        // $file = $request->photo->storeAs(public_path('images'), $imageName, 'public');
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
+            // 'imagem' => $file,
+            'imagem' => '/images' . '/' . $imageName,
             'ativo' => 1,
             'nivelAcesso_id' => 3,
         ]);
 
         return response()->json([
             'message' => 'Garçom cadastrado com sucesso.',
+            'teste' => $user,
         ], 200,
             ['Content-type' => 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
@@ -91,7 +101,6 @@ class FinanceiroController extends Controller
             ['Content-type' => 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
 
-
     public function listarGarcons()
     {
         $agentes = User::where('nivelAcesso_id', 3)->get();
@@ -102,7 +111,8 @@ class FinanceiroController extends Controller
             ['Content-type' => 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
 
-    public function cadastrarMesa(Request $request){
+    public function cadastrarMesa(Request $request)
+    {
 
         Mesa::create([
             'id' => $request->id,
